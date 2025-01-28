@@ -27,6 +27,7 @@ public class QuickTimeEvent : MonoBehaviour {
    }
 
    private void Update() {
+      if (PlayerHealth.Instance.CurrentHealth == 0) gameObject.SetActive(false);
       progressSlider.value = fillValue;
       if (fillValue >= 1f) return;
       if (timerSlider.value <= 0f) {

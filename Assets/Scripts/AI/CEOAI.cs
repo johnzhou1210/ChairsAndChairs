@@ -29,7 +29,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
     private bool canGrab = false;
 
-    [SerializeField] private GameObject introBanner, missilePrefab, barrel1, barrel2, quicktimeEvent, eyeGlow, laserSpinnerPrefab, laserSpinnerContainer;
+    [SerializeField] private GameObject introBanner, missilePrefab, barrel1, barrel2, quicktimeEvent, eyeGlow, laserSpinnerPrefab, laserSpinnerContainer, sniperSquad;
     private Coroutine activePhase, activeMove;
     private AudioClip bossMusic;
     public int ActivePhaseInt { get; private set; } = 0; // -1 means dead
@@ -88,6 +88,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
         if (!canGrab) return;
         if (Vector3.Distance(PlayerInput.Instance.transform.position, transform.position) < grabRange) {
             canGrab = false;
+            AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/armswing"), Random.Range(0.8f, 1.2f));
             animator.Play("CEOGrab");
         }
     }
@@ -278,6 +279,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
         BossBarRender.Instance.Show();
         collider.enabled = true;
         ChangePhase(1);
+        Invoke(nameof(StartSniperSquad), 3f);
         Invoke(nameof(EnableCanGrab), 3f);
     }
 
@@ -297,6 +299,10 @@ public class CEOAI : MonoBehaviour, IBossAI {
         introBanner.SetActive(true);
         Invoke(nameof(EnablePlayerControls), 5f);
         AudioManager.Instance.PlayMusic(bossMusic);
+    }
+
+    private void StartSniperSquad() {
+        sniperSquad.SetActive(true);
     }
 
     public void EnablePlayerControls() { PlayerInput.Instance.enabled = true; }

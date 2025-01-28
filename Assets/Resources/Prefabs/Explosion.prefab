@@ -313,5 +313,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 9066148714769194165}
-  damage: 2
+  damage: 1
   destroyOnHit: 0

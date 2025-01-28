@@ -86,7 +86,7 @@ MonoBehaviour:
   ProjectileSpeed: 4
   ProjectileBehavior: 2
   DisintegrationEffect: {fileID: 7285404559716147932, guid: 8e03c3fabe7a025409e6dc32080aa273, type: 3}
-  ProjectileDamage: 4
+  ProjectileDamage: 2
   collider: {fileID: 6040423553187894128}
 --- !u!1 &3937061792225672933
 GameObject:

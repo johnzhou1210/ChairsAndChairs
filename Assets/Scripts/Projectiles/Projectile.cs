@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
                 }
             break;
             case ProjectileBehavior.TARGET_GAMEOBJECT:
-                float homingStrength = 2.5f;
+                float homingStrength = 3f;
                 Vector3 direction = (PlayerInput.Instance.gameObject.transform.position - transform.position).normalized;
                 Vector3 adjustedDirection = Vector3.Lerp(transform.up, direction, homingStrength * Time.fixedDeltaTime);
                 float centerAngle = (Mathf.Atan2(adjustedDirection.y, adjustedDirection.x) * Mathf.Rad2Deg) - 90f;

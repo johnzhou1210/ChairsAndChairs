@@ -1,0 +1,1183 @@
+fileFormatVersion: 2
+guid: 9e8051ed32182114aa9ff0e9072b54c2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6160162416871001961
+    second: ceo_transform_0
+  - first:
+      213: -7822461264899029465
+    second: ceo_transform_1
+  - first:
+      213: 923974821679131540
+    second: ceo_transform_2
+  - first:
+      213: -8657295674377530044
+    second: ceo_transform_3
+  - first:
+      213: 8040783086754831514
+    second: ceo_transform_4
+  - first:
+      213: -303607795993764874
+    second: ceo_transform_5
+  - first:
+      213: 6927556136551495887
+    second: ceo_transform_6
+  - first:
+      213: 4031979636400297642
+    second: ceo_transform_7
+  - first:
+      213: -7963311542695509779
+    second: ceo_transform_8
+  - first:
+      213: 2695291993453297275
+    second: ceo_transform_9
+  - first:
+      213: -5112559603057589659
+    second: ceo_transform_10
+  - first:
+      213: -3751233109215727996
+    second: ceo_transform_11
+  - first:
+      213: 168290933161670287
+    second: ceo_transform_12
+  - first:
+      213: -1613195707963649426
+    second: ceo_transform_13
+  - first:
+      213: -3972724221094246162
+    second: ceo_transform_14
+  - first:
+      213: -8289114246894993283
+    second: ceo_transform_15
+  - first:
+      213: -4164117992046989895
+    second: ceo_transform_16
+  - first:
+      213: 5011074286320989159
+    second: ceo_transform_17
+  - first:
+      213: -4395483842996303775
+    second: ceo_transform_18
+  - first:
+      213: -4613348881982698448
+    second: ceo_transform_19
+  - first:
+      213: -3054653007719251413
+    second: ceo_transform_20
+  - first:
+      213: 5148223901255927121
+    second: ceo_transform_21
+  - first:
+      213: -7281268333868439112
+    second: ceo_transform_22
+  - first:
+      213: -573725416896463706
+    second: ceo_transform_23
+  - first:
+      213: 3032710759677425201
+    second: ceo_transform_24
+  - first:
+      213: 6758623158489567623
+    second: ceo_transform_25
+  - first:
+      213: 5116104921515304093
+    second: ceo_transform_26
+  - first:
+      213: -8512515509024603894
+    second: ceo_transform_27
+  - first:
+      213: -5823429597189589369
+    second: ceo_transform_28
+  - first:
+      213: -5363266842788644958
+    second: ceo_transform_29
+  - first:
+      213: 5168489838722933415
+    second: ceo_transform_30
+  - first:
+      213: 7708190505579415625
+    second: ceo_transform_31
+  - first:
+      213: 6482970650414069829
+    second: ceo_transform_32
+  - first:
+      213: -6083713345071720958
+    second: ceo_transform_33
+  - first:
+      213: -402376799856051240
+    second: ceo_transform_34
+  - first:
+      213: 8780676923302778931
+    second: ceo_transform_35
+  - first:
+      213: 1062240722659034592
+    second: ceo_transform_36
+  - first:
+      213: -2858822223087558315
+    second: ceo_transform_37
+  - first:
+      213: -1645264209208733356
+    second: ceo_transform_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ceo_transform_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79031b77be4b28aa0800000000000000
+      internalID: -6160162416871001961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_1
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 480
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 726c07cbce8017390800000000000000
+      internalID: -7822461264899029465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_2
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 480
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49be693743e92dc00800000000000000
+      internalID: 923974821679131540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_3
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 480
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4459335d37b1bd780800000000000000
+      internalID: -8657295674377530044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_4
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 480
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c9df19d99969f60800000000000000
+      internalID: 8040783086754831514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_5
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 480
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb90c0715e59cbf0800000000000000
+      internalID: -303607795993764874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_6
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 480
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc8bab83a9f932060800000000000000
+      internalID: 6927556136551495887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa69f31fd1874f730800000000000000
+      internalID: 4031979636400297642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_8
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 384
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de0cdd5e752ac7190800000000000000
+      internalID: -7963311542695509779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 384
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7efcbba9c9976520800000000000000
+      internalID: 2695291993453297275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_10
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 384
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5628db6e02a8c09b0800000000000000
+      internalID: -5112559603057589659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_11
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 384
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48e238fac51f0fbc0800000000000000
+      internalID: -3751233109215727996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_12
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 384
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86350a46b3e55200800000000000000
+      internalID: 168290933161670287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_13
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 384
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6254a9fc07cc99e0800000000000000
+      internalID: -1613195707963649426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee8461b8e5c0ed8c0800000000000000
+      internalID: -3972724221094246162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_15
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 288
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d70c133928627fc80800000000000000
+      internalID: -8289114246894993283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_16
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 288
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bde939afb41636c0800000000000000
+      internalID: -4164117992046989895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_17
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 288
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3b14b7389ea8540800000000000000
+      internalID: 5011074286320989159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 288
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1688c3aabba1003c0800000000000000
+      internalID: -4395483842996303775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_19
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 288
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03cc97862a71affb0800000000000000
+      internalID: -4613348881982698448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_20
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 288
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b22c0d21641bb95d0800000000000000
+      internalID: -3054653007719251413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 155098a9c5a227740800000000000000
+      internalID: 5148223901255927121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_22
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 192
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b9a875370db3fa90800000000000000
+      internalID: -7281268333868439112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_23
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 192
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6acf547e5c7b908f0800000000000000
+      internalID: -573725416896463706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_24
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 192
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 136f3113e5a561a20800000000000000
+      internalID: 3032710759677425201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_25
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 192
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 781df7434f37bcd50800000000000000
+      internalID: 6758623158489567623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_26
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 192
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d942c80e15e000740800000000000000
+      internalID: 5116104921515304093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_27
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 192
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01c59bee387dd980800000000000000
+      internalID: -8512515509024603894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 786b40d92a50f2fa0800000000000000
+      internalID: -5823429597189589369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_29
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 96
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a7b3f7e839d195b0800000000000000
+      internalID: -5363266842788644958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_30
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 96
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a2eb4edf1a2ab740800000000000000
+      internalID: 5168489838722933415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_31
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 96
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9488912dc6ef8fa60800000000000000
+      internalID: 7708190505579415625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_32
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 96
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 548b633557328f950800000000000000
+      internalID: 6482970650414069829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_33
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 96
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20652bf02fe429ba0800000000000000
+      internalID: -6083713345071720958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_34
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 96
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dbb8b2be687a6af0800000000000000
+      internalID: -402376799856051240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efeb41f38733787429a03d443a17e424
+      internalID: 8780676923302778931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_36
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b583190118dc0741b5d20a0dbdef840
+      internalID: 1062240722659034592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_37
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb132c4a82c8b264489232d3aa7ba2f7
+      internalID: -2858822223087558315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceo_transform_38
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 108
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ea2dbe9ca738e47a74785908804280
+      internalID: -1645264209208733356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0f4fabad60f6be943ad78af9ebd29ac6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ceo_transform_0: -6160162416871001961
+      ceo_transform_1: -7822461264899029465
+      ceo_transform_10: -5112559603057589659
+      ceo_transform_11: -3751233109215727996
+      ceo_transform_12: 168290933161670287
+      ceo_transform_13: -1613195707963649426
+      ceo_transform_14: -3972724221094246162
+      ceo_transform_15: -8289114246894993283
+      ceo_transform_16: -4164117992046989895
+      ceo_transform_17: 5011074286320989159
+      ceo_transform_18: -4395483842996303775
+      ceo_transform_19: -4613348881982698448
+      ceo_transform_2: 923974821679131540
+      ceo_transform_20: -3054653007719251413
+      ceo_transform_21: 5148223901255927121
+      ceo_transform_22: -7281268333868439112
+      ceo_transform_23: -573725416896463706
+      ceo_transform_24: 3032710759677425201
+      ceo_transform_25: 6758623158489567623
+      ceo_transform_26: 5116104921515304093
+      ceo_transform_27: -8512515509024603894
+      ceo_transform_28: -5823429597189589369
+      ceo_transform_29: -5363266842788644958
+      ceo_transform_3: -8657295674377530044
+      ceo_transform_30: 5168489838722933415
+      ceo_transform_31: 7708190505579415625
+      ceo_transform_32: 6482970650414069829
+      ceo_transform_33: -6083713345071720958
+      ceo_transform_34: -402376799856051240
+      ceo_transform_35: 8780676923302778931
+      ceo_transform_36: 1062240722659034592
+      ceo_transform_37: -2858822223087558315
+      ceo_transform_38: -1645264209208733356
+      ceo_transform_4: 8040783086754831514
+      ceo_transform_5: -303607795993764874
+      ceo_transform_6: 6927556136551495887
+      ceo_transform_7: 4031979636400297642
+      ceo_transform_8: -7963311542695509779
+      ceo_transform_9: 2695291993453297275
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

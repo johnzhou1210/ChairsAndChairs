@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &-7513495641155501635
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ShaderVariants
+  m_Shaders:
+  - first: {fileID: 4800000, guid: 96246b1ead49a4c5a996fd477bc5a117, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: COLOR_ADDITIVE
+        passType: 0
+      - keywords: COLOR_HSV_MODIFIER
+        passType: 0
+      - keywords: COLOR_MULTIPLY
+        passType: 0
+      - keywords: COLOR_MULTIPLY SAMPLING_BLUR_DETAIL
+        passType: 0
+      - keywords: COLOR_MULTIPLY SAMPLING_BLUR_FAST
+        passType: 0
+      - keywords: COLOR_MULTIPLY SAMPLING_EDGE_ALPHA
+        passType: 0
+      - keywords: COLOR_MULTIPLY SAMPLING_EDGE_LUMINANCE
+        passType: 0
+      - keywords: COLOR_MULTIPLY SAMPLING_RGB_SHIFT
+        passType: 0
+      - keywords: COLOR_MULTIPLY TARGET_HUE
+        passType: 0
+      - keywords: COLOR_MULTIPLY TARGET_LUMINANCE
+        passType: 0
+      - keywords: COLOR_MULTIPLY TONE_GRAYSCALE
+        passType: 0
+      - keywords: COLOR_MULTIPLY TONE_NEGATIVE
+        passType: 0
+      - keywords: COLOR_MULTIPLY TONE_POSTERIZE
+        passType: 0
+      - keywords: COLOR_MULTIPLY TONE_RETRO
+        passType: 0
+      - keywords: COLOR_MULTIPLY TONE_SEPIA
+        passType: 0
+      - keywords: COLOR_MULTIPLY_LUMINANCE
+        passType: 0
+      - keywords: EDGE_COLOR_REPLACE EDGE_PLAIN
+        passType: 0
+      - keywords: EDGE_COLOR_REPLACE EDGE_SHINY
+        passType: 0
+      - keywords: SAMPLING_BLUR_DETAIL
+        passType: 0
+      - keywords: SAMPLING_BLUR_FAST
+        passType: 0
+      - keywords: SAMPLING_BLUR_MEDIUM
+        passType: 0
+      - keywords: SAMPLING_EDGE_ALPHA
+        passType: 0
+      - keywords: SAMPLING_EDGE_LUMINANCE
+        passType: 0
+      - keywords: SAMPLING_PIXELATION
+        passType: 0
+      - keywords: SAMPLING_RGB_SHIFT
+        passType: 0
+      - keywords: SHADOW_COLOR_REPLACE
+        passType: 0
+      - keywords: TONE_GRAYSCALE
+        passType: 0
+      - keywords: TONE_NEGATIVE
+        passType: 0
+  - first: {fileID: 4800000, guid: c67f821adbb6348a3a21573a25b55de0, type: 3}
+    second:
+      variants:
+      - keywords: COLOR_MULTIPLY
+        passType: 0
+      - keywords: COLOR_MULTIPLY EDGE_COLOR_REPLACE EDGE_PLAIN
+        passType: 0
+      - keywords: COLOR_MULTIPLY EDGE_COLOR_REPLACE EDGE_SHINY
+        passType: 0
+      - keywords: COLOR_MULTIPLY SAMPLING_BLUR_DETAIL
+        passType: 0
+      - keywords: COLOR_MULTIPLY SAMPLING_PIXELATION
+        passType: 0
+      - keywords: COLOR_MULTIPLY SAMPLING_RGB_SHIFT
+        passType: 0
+      - keywords: COLOR_MULTIPLY TRANSITION_FADE
+        passType: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d43f626d9b5f4d729097092ded48bdb, type: 3}
+  m_Name: UIEffectProjectSettings
+  m_EditorClassIdentifier: 
+  m_TransformSensitivity: 1
+  m_RuntimePresets: []
+  m_UseHDRColorPicker: 1
+  m_ShaderVariantCollection: {fileID: 0}
+  m_ShaderVariantRegistry:
+    m_OptionalShaders: []
+    m_Asset: {fileID: -7513495641155501635}
+    m_ErrorOnUnregisteredVariant: 0
+    m_UnregisteredVariants: []

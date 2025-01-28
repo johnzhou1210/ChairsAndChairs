@@ -34,7 +34,7 @@ public class EnemyMissileProjectile : Projectile {
     }
 
     private void Start() {
-        Invoke(nameof(Disintegrate), 10f);
+        Invoke(nameof(Disintegrate), 12f);
         explosionSound = Resources.Load<AudioClip>("Audio/explosion");
     }
 

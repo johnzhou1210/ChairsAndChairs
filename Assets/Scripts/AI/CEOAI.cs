@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 public class CEOAI : MonoBehaviour, IBossAI {
@@ -28,7 +29,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
     private bool canGrab = false;
 
-    [SerializeField] private GameObject introBanner, missilePrefab, barrel1, barrel2, quicktimeEvent, eyeGlow;
+    [SerializeField] private GameObject introBanner, missilePrefab, barrel1, barrel2, quicktimeEvent, eyeGlow, laserSpinnerPrefab, laserSpinnerContainer;
     private Coroutine activePhase, activeMove;
     private AudioClip bossMusic;
     public int ActivePhaseInt { get; private set; } = 0; // -1 means dead
@@ -118,7 +119,11 @@ public class CEOAI : MonoBehaviour, IBossAI {
     private IEnumerator Phase1() {
         yield return new WaitForSeconds(3f);
         while (true) {
-            // SetActiveMove(Phase1_MissileBarrage());  
+            List<IEnumerator> moves = new List<IEnumerator> {
+                Phase1_SpawnLaserSpinners(),
+                Phase1_MissileBarrage(),
+            };
+            SetActiveMove(Util.Choice(moves));  
             yield return new WaitUntil(() => activeMove == null);
             yield return new WaitForSeconds(actionDelay);
         }
@@ -140,7 +145,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
             Vector3 direction = (PlayerInput.Instance.gameObject.transform.position - muzzle.transform.position)
                 .normalized;
             float centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
-            float projectileSpeed = Random.Range(12f, 13f);
+            float projectileSpeed = Random.Range(15f, 17f);
             GameObject missileObj = Instantiate(missilePrefab, muzzle.transform.position, Quaternion.identity);
             EnemyMissileProjectile projectile = missileObj.GetComponent<EnemyMissileProjectile>();
             missileObj.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
@@ -155,7 +160,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
             muzzle = barrel2;
             direction = (PlayerInput.Instance.gameObject.transform.position - muzzle.transform.position).normalized;
             centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
-            projectileSpeed = Random.Range(12f, 13f);
+            projectileSpeed = Random.Range(15f, 17f);
             missileObj = Instantiate(missilePrefab, muzzle.transform.position, Quaternion.identity);
             projectile = missileObj.GetComponent<EnemyMissileProjectile>();
             missileObj.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
@@ -174,10 +179,46 @@ public class CEOAI : MonoBehaviour, IBossAI {
             "Witness my high-tech weapons!",
         };
         
+        List<Vector3> spawnedPoints = new List<Vector3>();
+        Tilemap tilemap = GameObject.FindWithTag("SpawnArea").GetComponent<Tilemap>();
+        BoundsInt bounds = tilemap.cellBounds;
+
+        for (int i = 0; i < 12; i++) {
+            Vector3 randPos = GetRandomTilePosition(tilemap, bounds, spawnedPoints);
+            spawnedPoints.Add(randPos);
+        }
+        
+        foreach (Vector3 point in spawnedPoints)
+        {
+            GameObject spinner = Instantiate(laserSpinnerPrefab, point, Quaternion.identity);
+            spinner.transform.parent = laserSpinnerContainer.transform;
+            AudioManager.Instance.PlaySFXAtPoint(point, Resources.Load<AudioClip>("Audio/laserspinnerdeploy"), Random.Range(.8f, 1.2f));
+            yield return new WaitForSeconds(.25f);
+        }
         
         
-        yield return null;
+        yield return new WaitForSeconds(.5f);
+        
+        
+        
         FinishAction();
+    }
+
+    Vector3Int GetRandomTilePosition(Tilemap tilemap, BoundsInt bounds, List<Vector3> spawnedPoints) {
+        for (int attempts = 0; attempts < 100; attempts++) {
+            int x = Random.Range(bounds.xMin, bounds.xMax);
+            int y = Random.Range(bounds.yMin, bounds.yMax);
+            Vector3Int randomPosition = new Vector3Int(x, y, 0);
+            if (tilemap.HasTile(randomPosition)) {
+                foreach (Vector3 point in spawnedPoints)
+                {
+                    if (Vector3.Distance(tilemap.CellToWorld(randomPosition), point) > 5f) {
+                        return randomPosition;
+                    }
+                }
+            }
+        }
+        return Vector3Int.zero;
     }
 
 

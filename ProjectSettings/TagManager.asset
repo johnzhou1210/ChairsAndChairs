@@ -12,6 +12,7 @@ TagManager:
   - IntroBanner
   - Spawner
   - Window
+  - SpawnArea
   layers:
   - Default
   - TransparentFX

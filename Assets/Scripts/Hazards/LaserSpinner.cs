@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 public class LaserSpinner : MonoBehaviour {
    [SerializeField, Self] private Animator animator;
+   [SerializeField, Child] private RandomRotate randomRotate;
 
    private void OnValidate() {
       this.ValidateRefs();
@@ -21,6 +22,10 @@ public class LaserSpinner : MonoBehaviour {
 
    public void Dispose() {
       Destroy(this.gameObject);
+   }
+
+   public void MultiplyRotationSpeed(float multiplier) {
+      randomRotate.RotationSpeed *= multiplier;
    }
    
 }

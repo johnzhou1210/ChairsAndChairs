@@ -171,7 +171,7 @@ public class PlayerInput : MonoBehaviour {
         }
 
         transform.Translate(movementInput * (dodgeSpeed * Time.fixedDeltaTime));
-        Debug.Log("Translation: " + (movementInput * (dodgeSpeed * Time.fixedDeltaTime)).ToString());
+        // Debug.Log("Translation: " + (movementInput * (dodgeSpeed * Time.fixedDeltaTime)).ToString());
     }
 
     private void ListenForDodgeInput() {
@@ -316,8 +316,8 @@ public class PlayerInput : MonoBehaviour {
 
     private void InitializeCursor() {
         // Might want to move this to title screen and make it as a singleton later
-        Texture2D sprite = Resources.Load<Texture2D>("Sprites/UI/Cursor");
-        Cursor.SetCursor(sprite, new(125, 125), CursorMode.Auto);
+        Texture2D sprite = Resources.Load<Texture2D>("Sprites/UI/CursorSmaller");
+        Cursor.SetCursor(sprite, new(16, 16), CursorMode.ForceSoftware);
     }
 
     private void EndFrenzy() {

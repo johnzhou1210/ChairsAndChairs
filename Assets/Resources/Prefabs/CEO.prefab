@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4756688986020854015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.116000056, y: 0.46799994}
+  m_AnchoredPosition: {x: -0.123, y: 0.465}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &587624865891382884
@@ -722,6 +722,11 @@ MonoBehaviour:
   barrel2: {fileID: 4261141105140718212}
   quicktimeEvent: {fileID: 0}
   eyeGlow: {fileID: 2624852756407625030}
+  laserSpinnerPrefab: {fileID: 5239491833576188020, guid: 179c565bcaaecb64ea41772aa77872b2, type: 3}
+  laserSpinnerContainer: {fileID: 0}
+  sniperSquad: {fileID: 0}
+  dangerTile: {fileID: 1543187238451663326, guid: 6172a01e828c341458c9ef00dcb5b892, type: 3}
+  dangerTileContainer: {fileID: 0}
 --- !u!114 &1501952952364110152
 MonoBehaviour:
   m_ObjectHideFlags: 0

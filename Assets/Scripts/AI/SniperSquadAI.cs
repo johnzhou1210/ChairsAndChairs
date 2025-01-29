@@ -11,8 +11,10 @@ public class SniperSquadAI : MonoBehaviour {
     [SerializeField] private int numSnipers = 5;
 
     private List<Coroutine> sniperCoroutines ;
+    List<GameObject> redDots;
     
     private void Start() {
+        redDots = new List<GameObject>();
         sniperCoroutines = new List<Coroutine>();
         for (int i = 0; i < numSnipers; i++) {
             Coroutine sniperCoro = StartCoroutine(InitRecon()); 
@@ -38,6 +40,7 @@ public class SniperSquadAI : MonoBehaviour {
 
         yield return new WaitForSeconds(1f);
         GameObject trackingDot = Instantiate(trackingDotPrefab, transform.position, Quaternion.identity);
+        redDots.Add(trackingDot);
         
         while (true) {
             changeFocusTimer += Time.fixedDeltaTime;
@@ -51,6 +54,7 @@ public class SniperSquadAI : MonoBehaviour {
                 if (currMovementTween != null) currMovementTween.Kill(); 
                 focusPosition = GetNewFocusPosition();
                 // Move to focus position
+                if (trackingDot == null) yield break;
                 currMovementTween = trackingDot.transform.DOMove(focusPosition, Random.Range(.5f, 1f)).OnKill(() => {
                     tweenDone = true;
                 }).OnComplete(() => {
@@ -106,6 +110,19 @@ public class SniperSquadAI : MonoBehaviour {
                 sniperCoroutines[i] = null;
             }
         }
+        foreach (GameObject redDot in redDots) {
+            Destroy(redDot);
+        }
+    }
+
+    public void SpawnSnipers(int quantity) {
+        for (int i = 0; i < numSnipers; i++) {
+            sniperCoroutines.Add(StartCoroutine(InitRecon()));   
+        }
+    }
+
+    void OnDestroy() {
+        TerminateRecon();
     }
 
 }

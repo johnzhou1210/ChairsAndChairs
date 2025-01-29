@@ -113,8 +113,6 @@ public class ManagerAI : MonoBehaviour, IBossAI {
 
     private IEnumerator Phase1() {
         yield return new WaitForSeconds(3f);
-        float summonKarenChance = 1f;
-        float berateChance = 1f;
         while (true) {
             
             SetActiveMove(Phase1_Berate(30,1f));  

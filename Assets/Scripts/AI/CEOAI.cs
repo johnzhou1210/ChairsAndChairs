@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using KBCore.Refs;
 using TMPro;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
@@ -29,7 +30,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
     private bool canGrab = false;
 
-    [SerializeField] private GameObject introBanner, missilePrefab, barrel1, barrel2, quicktimeEvent, eyeGlow, laserSpinnerPrefab, laserSpinnerContainer, sniperSquad;
+    [SerializeField] private GameObject introBanner, missilePrefab, barrel1, barrel2, quicktimeEvent, eyeGlow, laserSpinnerPrefab, laserSpinnerContainer, sniperSquad, dangerTile, dangerTileContainer;
     private Coroutine activePhase, activeMove;
     private AudioClip bossMusic;
     public int ActivePhaseInt { get; private set; } = 0; // -1 means dead
@@ -68,6 +69,9 @@ public class CEOAI : MonoBehaviour, IBossAI {
     private void Update() {
         if (bossHealth.CurrentHealth == 0 && ActivePhaseInt != -1) {
             ActivePhaseInt = -1;
+            AudioManager.Instance.StopMusic();
+            sniperSquad.GetComponent<SniperSquadAI>().TerminateRecon();
+            PlayerInput.Instance.gameObject.GetComponent<Collider2D>().enabled = false;
             PlayerHealth.Instance.EndCameraShake();
             SetSpeech("");
             StopActivePhasesAndMoves();
@@ -121,8 +125,8 @@ public class CEOAI : MonoBehaviour, IBossAI {
         yield return new WaitForSeconds(3f);
         while (true) {
             List<IEnumerator> moves = new List<IEnumerator> {
-                Phase1_SpawnLaserSpinners(),
-                Phase1_MissileBarrage(),
+                SpawnLaserSpinners(false),
+                MissileBarrage(false),
             };
             SetActiveMove(Util.Choice(moves));  
             yield return new WaitUntil(() => activeMove == null);
@@ -131,14 +135,14 @@ public class CEOAI : MonoBehaviour, IBossAI {
     }
 
 
-    private IEnumerator Phase1_MissileBarrage() {
+    private IEnumerator MissileBarrage(bool crisis) {
         List<string> lines = new List<string> {
             "Think you can win? Think again.",
         };
 
         SetSpeech(Util.Choice(lines));
         
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < (crisis ? 16 : 5); i++) {
             AudioManager.Instance.PlaySFXAtPoint(transform.position, Resources.Load<AudioClip>("Audio/missilefire"),
                 Random.Range(.8f, 1.2f));
             // Raycast forward point destination
@@ -146,8 +150,8 @@ public class CEOAI : MonoBehaviour, IBossAI {
             Vector3 direction = (PlayerInput.Instance.gameObject.transform.position - muzzle.transform.position)
                 .normalized;
             float centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
-            float projectileSpeed = Random.Range(15f, 17f);
-            GameObject missileObj = Instantiate(missilePrefab, muzzle.transform.position, Quaternion.identity);
+            float projectileSpeed = crisis ? Random.Range(18f, 20f) : Random.Range(8f, 9f);
+            GameObject missileObj = Instantiate(missilePrefab, muzzle.transform.position + new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f),0), Quaternion.identity);
             EnemyMissileProjectile projectile = missileObj.GetComponent<EnemyMissileProjectile>();
             missileObj.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
             projectile.SetOwner(gameObject);
@@ -161,21 +165,21 @@ public class CEOAI : MonoBehaviour, IBossAI {
             muzzle = barrel2;
             direction = (PlayerInput.Instance.gameObject.transform.position - muzzle.transform.position).normalized;
             centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
-            projectileSpeed = Random.Range(15f, 17f);
-            missileObj = Instantiate(missilePrefab, muzzle.transform.position, Quaternion.identity);
+            projectileSpeed = crisis ? Random.Range(18f, 20f) : Random.Range(8f, 9f);
+            missileObj = Instantiate(missilePrefab, muzzle.transform.position + new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f),0), Quaternion.identity);
             projectile = missileObj.GetComponent<EnemyMissileProjectile>();
             missileObj.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
             projectile.SetOwner(gameObject);
             projectile.ProjectileSpeed = projectileSpeed;
             projectile.SetBehavior(ProjectileBehavior.TARGET_GAMEOBJECT, PlayerInput.Instance.gameObject);
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(crisis ? .125f : .67f);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(crisis ? 1f : 2f);
         FinishAction();
     }
 
-    private IEnumerator Phase1_SpawnLaserSpinners() {
+    private IEnumerator SpawnLaserSpinners(bool crisis) {
         List<string> lines = new List<string> {
             "Witness my high-tech weapons!",
         };
@@ -184,27 +188,36 @@ public class CEOAI : MonoBehaviour, IBossAI {
         Tilemap tilemap = GameObject.FindWithTag("SpawnArea").GetComponent<Tilemap>();
         BoundsInt bounds = tilemap.cellBounds;
 
-        for (int i = 0; i < 12; i++) {
-            Vector3 randPos = GetRandomTilePosition(tilemap, bounds, spawnedPoints);
+        for (int i = 0; i < (crisis ? 14 : 6); i++) {
+            Vector3Int randPos = GetRandomTilePosition(tilemap, bounds, spawnedPoints);
             spawnedPoints.Add(randPos);
-        }
-        
-        foreach (Vector3 point in spawnedPoints)
-        {
-            GameObject spinner = Instantiate(laserSpinnerPrefab, point, Quaternion.identity);
-            spinner.transform.parent = laserSpinnerContainer.transform;
-            AudioManager.Instance.PlaySFXAtPoint(point, Resources.Load<AudioClip>("Audio/laserspinnerdeploy"), Random.Range(.8f, 1.2f));
-            yield return new WaitForSeconds(.25f);
+            TileBase tileToFlash = tilemap.GetTile(randPos);
+            StartCoroutine(FlashTile(tileToFlash, tilemap.CellToWorld(randPos)));
+            yield return new WaitForSeconds(crisis ? .1f : .25f);
         }
         
         
-        yield return new WaitForSeconds(.5f);
-        
-        
-        
+        yield return new WaitForSeconds(crisis ? 0f : 1f);
         FinishAction();
     }
 
+    private IEnumerator FlashTile(TileBase tileToFlash, Vector3 position) {
+        GameObject dangerTile = Instantiate(this.dangerTile, position, Quaternion.identity, dangerTileContainer.transform);
+        Light2D light = dangerTile.transform.Find("Light").GetComponent<Light2D>();
+        for (int i = 0; i < 3; i++) {
+            if (light == null) yield break;
+            light.enabled = true;
+            yield return new WaitForSeconds(.2f);
+            if (light == null) yield break;
+            light.enabled = false;
+            yield return new WaitForSeconds(.2f);
+        }
+        Destroy(dangerTile);
+        GameObject spinner = Instantiate(laserSpinnerPrefab, position, Quaternion.identity);
+        spinner.transform.parent = laserSpinnerContainer.transform;
+        AudioManager.Instance.PlaySFXAtPoint(position, Resources.Load<AudioClip>("Audio/laserspinnerdeploy"), Random.Range(.8f, 1.2f));
+    }
+    
     Vector3Int GetRandomTilePosition(Tilemap tilemap, BoundsInt bounds, List<Vector3> spawnedPoints) {
         for (int attempts = 0; attempts < 100; attempts++) {
             int x = Random.Range(bounds.xMin, bounds.xMax);
@@ -224,12 +237,21 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
 
     private IEnumerator Phase2() {
-        SetSpeech("ARGH!!!! WASTE OF MONEY!!!");
+        SetSpeech("I’LL SHOW YOU HELL!");
+        AberrationEffectOn();
+        
         PlayerHealth.Instance.StartCameraShake();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        AberrationEffectOff();
         PlayerHealth.Instance.EndCameraShake();
+        sniperSquad.GetComponent<SniperSquadAI>().SpawnSnipers(5);
 
         while (true) {
+            List<IEnumerator> moves = new List<IEnumerator> {
+                SpawnLaserSpinners(true),
+                MissileBarrage(true),
+            };
+            SetActiveMove(Util.Choice(moves));
             yield return new WaitUntil(() => activeMove == null);
             yield return new WaitForSeconds(actionDelay);
         }
@@ -279,8 +301,8 @@ public class CEOAI : MonoBehaviour, IBossAI {
         BossBarRender.Instance.Show();
         collider.enabled = true;
         ChangePhase(1);
-        Invoke(nameof(StartSniperSquad), 3f);
         Invoke(nameof(EnableCanGrab), 3f);
+        Invoke(nameof(StartSniperSquad), 3f);
     }
 
     public void SetMoveSpeed(float speed) {

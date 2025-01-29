@@ -25,7 +25,6 @@ public class UIShake : MonoBehaviour
     }
     
     public void TriggerShake() {
-        print("in here");
         rectTransform.DOShakeAnchorPos(ShakeDuration, ShakeIntensity);
     }
 

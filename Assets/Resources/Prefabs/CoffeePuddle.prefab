@@ -66,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 2424533485804488789}
   damage: 1
+  destroyOnHit: 0
 --- !u!70 &2424533485804488789
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 6499856197151998192, guid: 0196f5f5ccecbe7459a134e1fdf2af93, type: 3}
   m_Color: {r: 0.79622644, g: 0.79622644, b: 0.79622644, a: 0.9647059}
   m_FlipX: 0

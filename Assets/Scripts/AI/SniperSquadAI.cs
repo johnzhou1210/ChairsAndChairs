@@ -69,7 +69,10 @@ public class SniperSquadAI : MonoBehaviour {
                     goodToShoot = false;
                     shotCooldown = Random.Range(2f, 9f);
                     timeElapsedSinceLastShot = 0f;
-                    yield return new WaitForSeconds(.5f);
+                    float pitch = Random.Range(2.25f, 2.5f);
+                    float loadDelay = -pitch + 3f;
+                    AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/sniperloadandshoot"), pitch);
+                    yield return new WaitForSeconds(loadDelay); // give time to play load sound before shooting
                     Shoot(focusPosition, startPos);
                     yield return new WaitForSeconds(2f);
                 }
@@ -100,7 +103,6 @@ public class SniperSquadAI : MonoBehaviour {
         Vector3 direction = (focusPosition - originPosition).normalized;
         float centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
         sniperLaserPrefab.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
-        AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/snipershot"), Random.Range(0.8f, 1.2f));
     }
 
     public void TerminateRecon() {
@@ -123,6 +125,7 @@ public class SniperSquadAI : MonoBehaviour {
 
     void OnDestroy() {
         TerminateRecon();
+        StopAllCoroutines();
     }
 
 }

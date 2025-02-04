@@ -80,6 +80,7 @@ public class LargeBodyguardBrain : MonoBehaviour {
             spriteRenderer.sortingOrder = 2;
             CancelInvoke(nameof(RestoreMoveSpeed));
             agent.speed = 0f;
+            agent.enabled = false;
             animator.enabled = false;
             swingColliderL.enabled = false;
             swingColliderR.enabled = false;

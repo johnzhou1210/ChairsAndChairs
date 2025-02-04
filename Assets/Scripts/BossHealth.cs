@@ -44,6 +44,7 @@ public class BossHealth : MonoBehaviour, IDamageable {
         animator.Play("BossHurt");
         if (CurrentHealth == 0) {
             PlayerStats.BossesKilled += 1;
+            BossBarRender.Instance.Hide();
             animator.Play("BossDead");
             GameObject.FindWithTag("IntroBanner").GetComponent<Animator>().Play("winbattle");
         }

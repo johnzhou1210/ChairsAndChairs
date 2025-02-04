@@ -64,19 +64,31 @@ public class PlayerInput : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
-    }
-
-    private void OnValidate() { this.ValidateRefs(); }
-
-    
-    void Start() {
-        InitializeCursor();
-
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         gunPivot = transform.Find("GunPivot").gameObject;
         gun = gunPivot.transform.Find("Gun").gameObject;
         barrel = gun.transform.Find("Barrel").gameObject;
         laserLine = gun.transform.Find("Laser").gameObject;
+    }
+
+    private void OnValidate() { this.ValidateRefs(); }
+
+
+    private void OnEnable() {
+        laserLine.SetActive(true);
+    }
+
+    private void OnDisable() {
+        laserLine.SetActive(false);
+    }
+
+    public void LaserLineSetActive(bool val) {
+        laserLine.SetActive(val);
+    }
+
+
+    void Start() {
+        InitializeCursor();
         projectilePrefab = (GameObject)Resources.Load("Prefabs/StapleProjectile");
         ammoLeft = clipSize;
     }
@@ -140,6 +152,7 @@ public class PlayerInput : MonoBehaviour {
     }
 
     private IEnumerator FrenzySpin() {
+        GameObject.FindWithTag("PlayerPortrait").gameObject.GetComponent<UIShake>().TriggerShake();
         AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/frenzytrigger"), 1f);
         PlayerStats.FrenziesUnleashed += 1;
         PlayerProjectile.FrenzyValue = 0;

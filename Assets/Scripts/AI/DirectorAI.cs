@@ -125,7 +125,7 @@ public class DirectorAI : MonoBehaviour, IBossAI {
             "Lower the energy bill for our company!",
             "I hope you're not afraid of the dark.",
             "Lights out!",
-            "Less paychecks, more solar panels!"
+            "Less paychecks, more DARKNESS!"
         };
         HashSet<Vector3> lightTiles = new HashSet<Vector3>();
         int spawned = 0;
@@ -243,7 +243,7 @@ public class DirectorAI : MonoBehaviour, IBossAI {
 
     private IEnumerator Phase2_SaveMoreEnergy(int numLightTiles) {
         List<string> lines = new List<string> {
-            "SAVE ENERGY!!!",
+            "GOOD NIGHT!",
             "YOU DON'T DESERVE LIGHT, SLACKER!",
             "EMBRACE THE DARKNESS, COWARD!",
         };

@@ -14,19 +14,15 @@ public class AudioManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
-    }
-
-    private void Start() {
         musicSource = gameObject.AddComponent<AudioSource>();
         musicSource.loop = true;
         musicSource.volume = GetMusicVolume();
-        // PlayMusic(Resources.Load<AudioClip>("Audio/Music/BossRushGameJam"));
-        // PlayWhiteNoise();
     }
 
     public void PlayMusic(AudioClip clip) {
         musicSource.clip = clip;
         musicSource.volume = GetMusicVolume();
+        musicSource.loop = true;
         musicSource.Play();
     }
 
@@ -109,7 +105,32 @@ public class AudioManager : MonoBehaviour {
     public float GetSFXVolume() {
         return sfxVolume * masterVolume;
     }
+
+    public float GetMasterVolumeSetting() {
+        return masterVolume;
+    }
+
+    public float GetBGMVolumeSetting() {
+        return musicVolume;
+    }
+
+    public float GetSFXVolumeSetting() {
+        return sfxVolume;
+    }
+
+    public void SetBGMVolumeSetting(float volume) {
+        musicVolume = volume;
+        musicSource.volume = GetMusicVolume();
+    }
     
+    public void SetSFXVolumeSetting(float volume) {
+        sfxVolume = volume;
+    }
+    
+    public void SetMasterVolumeSetting(float volume) {
+        masterVolume = volume;
+        musicSource.volume = GetMusicVolume();
+    }
     
     
 }

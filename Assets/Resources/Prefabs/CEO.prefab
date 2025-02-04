@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 4473966831476350334}
   - component: {fileID: 1429566853391089457}
   - component: {fileID: 5591788678921455982}
-  - component: {fileID: 1501952952364110152}
+  - component: {fileID: 6206989352023362794}
   - component: {fileID: 489607399569780042}
   - component: {fileID: 5074666674605736490}
   - component: {fileID: 4726899488259207227}
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fba9299feb7334888888a06261962b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossHealth: {fileID: 1501952952364110152}
+  bossHealth: {fileID: 0}
   spriteRenderer: {fileID: 6086037572959967990}
   animator: {fileID: 489607399569780042}
   dialogText: {fileID: 3940321664859174624}
@@ -727,7 +727,8 @@ MonoBehaviour:
   sniperSquad: {fileID: 0}
   dangerTile: {fileID: 1543187238451663326, guid: 6172a01e828c341458c9ef00dcb5b892, type: 3}
   dangerTileContainer: {fileID: 0}
---- !u!114 &1501952952364110152
+  blackness: {fileID: 0}
+--- !u!114 &6206989352023362794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -736,7 +737,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5510742254109627597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 407d6b10633422b4f9f1c6581e17bd2e, type: 3}
+  m_Script: {fileID: 11500000, guid: d07cf21083f37ca418f9bb60d3ceb1ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 500

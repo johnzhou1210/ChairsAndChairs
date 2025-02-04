@@ -404,11 +404,11 @@ public class SuperintendentAI : MonoBehaviour, IBossAI {
         yield return new WaitForSeconds(1f);
         if (GetPlayerChoice() == -1) {
             dialogText.text = "didn't even make a choice! Stay on the button!";
-            PlayerHealth.Instance.ActuallyTakeDamage(1);
+            PlayerHealth.Instance.ActuallyTakeDamage(2);
             AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/wrong"), 1f);
         } else if (CheckPlayerAnswer(GetPlayerChoice() == 0 ? false : true, selectedQuestion.Item2) == false) {
-            dialogText.text = "are wrong. don't lie to yourself!";
-            PlayerHealth.Instance.ActuallyTakeDamage(1);
+            dialogText.text = "are wrong. don't lie to yourself!!";
+            PlayerHealth.Instance.ActuallyTakeDamage(2);
             AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/wrong"), 1f);
         } else {
             // answer was correct!

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Coffee.UIEffects;
 using KBCore.Refs;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -24,6 +25,7 @@ public class QuickTimeEvent : MonoBehaviour {
       fillValue = 0f;
       timerSlider.value = 1f;
       uiEffect.enabled = false;
+      timerDepletionSpeed = CEOAI.Instance.ActivePhaseInt == 2 ? .3f : .2f;
    }
 
    private void Update() {
@@ -39,7 +41,8 @@ public class QuickTimeEvent : MonoBehaviour {
          timerSlider.value = Mathf.Clamp(timerSlider.value - Time.deltaTime * timerDepletionSpeed, 0f, 1f);
          if (timerSlider.value <= 0f) {
             // if player fails to break free in time, deal a lot of damage to player
-            PlayerHealth.Instance.ActuallyTakeDamage(10);
+            PlayerHealth.Instance.ActuallyTakeDamage(CEOAI.Instance.ActivePhaseInt == 2 ? 6 : 10);
+            AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/bonecrush"), Random.Range(0.8f, 1.2f));
             return;
          }
       }

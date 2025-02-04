@@ -5,6 +5,7 @@ using DG.Tweening;
 using KBCore.Refs;
 using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ public class PresidentAI : MonoBehaviour, IBossAI {
     [SerializeField] private float actionDelay = 1f;
 
     [SerializeField] private Slider bossHealthBar;
+    [SerializeField] private GameObject bossHealthBarContainer;
     [SerializeField] private GameObject spawnerContainer,
         smallBodyguardContainer,
         largeBodyguardContainer,
@@ -82,6 +84,7 @@ public class PresidentAI : MonoBehaviour, IBossAI {
         if (bossHealth.CurrentHealth == 0 && ActivePhaseInt != -1) {
             ActivePhaseInt = -1;
             bossHealthBar.value = 0f;
+            bossHealthBarContainer.SetActive(false);
             PlayerHealth.Instance.EndCameraShake();
             SetSpeech("");
             StopActivePhasesAndMoves();
@@ -203,6 +206,7 @@ public class PresidentAI : MonoBehaviour, IBossAI {
             Quaternion.identity,
             spawnerNum < 4 ? largeBodyguardContainer.transform : smallBodyguardContainer.transform
         );
+        AudioManager.Instance.PlaySFXAtPoint(spawnedEntity.transform.position, Resources.Load<AudioClip>("Audio/spawn"));
         yield return new WaitForSeconds(.5f);
         Destroy(laser);
     }
@@ -216,6 +220,8 @@ public class PresidentAI : MonoBehaviour, IBossAI {
         PlayerHealth.Instance.EndCameraShake();
         yield return new WaitForSeconds(1f);
 
+        Coroutine periodicCheck = StartCoroutine(PeriodicPhase3Check());
+        
         Coroutine periodicSpawn = StartCoroutine(Phase2PeriodicSpawn(2f));
         readyToSpawn = true;
         while (true) {
@@ -230,7 +236,17 @@ public class PresidentAI : MonoBehaviour, IBossAI {
         periodicSpawn = null;
         ChangePhase(3);
     }
-    
+
+    private IEnumerator PeriodicPhase3Check() {
+        while (ActivePhaseInt == 2) {
+            yield return new WaitForSeconds(5f);
+            if (GetAllAliveSpawners().Count == 0 && AllLargeBodyguardsDead()) {
+                ChangePhase(3);
+                yield break;
+            }
+        }
+        yield return null;
+    }
     
     private IEnumerator Phase2_Summon() {
         LargeBodyguardsKilled = 0;
@@ -281,6 +297,17 @@ public class PresidentAI : MonoBehaviour, IBossAI {
         }
         return result;
     }
+
+    private bool AllLargeBodyguardsDead() {
+        for (int i =0 ; i < largeBodyguardContainer.transform.childCount ; i++)
+        {
+            if (largeBodyguardContainer.transform.GetChild(i).gameObject.GetComponent<IDamageable>().GetHealthStats().Item1 > 0) {
+                return false;
+            }
+        }
+        Debug.LogWarning("Had to resort to detecting for all large bodyguards dead");
+        return true;
+    }
     
     private IEnumerator LaserSpawnEffect2(bool isLarge, Vector3 spawnPos, float delay = 1/12f) {
         yield return new WaitForSeconds(delay);
@@ -291,6 +318,7 @@ public class PresidentAI : MonoBehaviour, IBossAI {
             Quaternion.identity,
             isLarge ? largeBodyguardContainer.transform : smallBodyguardContainer.transform
         );
+        AudioManager.Instance.PlaySFXAtPoint(spawnedEntity.transform.position, Resources.Load<AudioClip>("Audio/spawn"));
         yield return new WaitForSeconds(.5f);
         Destroy(laser);
     }
@@ -378,15 +406,15 @@ public class PresidentAI : MonoBehaviour, IBossAI {
             if (reminderTimer > 60f) {
                 // flash the reminder
                 text.enabled = true;
-                yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(1f);
                 text.enabled = false;
-                yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(1f);
                 text.enabled = true;
-                yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(1f);
                 text.enabled = false;
-                yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(1f);
                 text.enabled = true;
-                yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(1f);
                 text.enabled = false;
                 reminderTimer = 0f;
             }
@@ -404,4 +432,5 @@ public class PresidentAI : MonoBehaviour, IBossAI {
             SetMoveSpeed(moveSpeed);
         }
     }
+    
 }

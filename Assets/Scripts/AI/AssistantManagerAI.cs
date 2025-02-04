@@ -127,7 +127,8 @@ public class AssistantManagerAI : MonoBehaviour, IBossAI {
         List<string> coffeeThrowLines = new List<string> {
             "Feel the scalding coffee!",
             "Try my coffee!",
-            "Feel the coffee burn!"
+            "Feel the coffee burn!",
+            "Did you know that coffee is acidic?"
         };
         SetSpeech(Util.Choice(coffeeThrowLines));
         for (int i = 0; i < numThrows; i++) {

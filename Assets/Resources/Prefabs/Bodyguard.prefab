@@ -181,6 +181,9 @@ MonoBehaviour:
   - {fileID: -743399355279540621, guid: 6d0848f7c3bbd9747999f34eeda95bed, type: 3}
   - {fileID: -8015009705997704181, guid: 6d0848f7c3bbd9747999f34eeda95bed, type: 3}
   - {fileID: 2365903144480007986, guid: 6d0848f7c3bbd9747999f34eeda95bed, type: 3}
+  pistolSprites:
+  - {fileID: -4854829337826818713, guid: d14a0179bbd5a7a4aa3b28c59e82de61, type: 3}
+  - {fileID: -5900747555884359866, guid: d14a0179bbd5a7a4aa3b28c59e82de61, type: 3}
   gunSpriteRenderer: {fileID: 4144118881999489090}
   gunSpriteRendererFlipped: {fileID: 6538419155815566383}
   projectilePrefab: {fileID: 4641511314788982226, guid: 10711cfb9f84e34469ad0de66a302cfb, type: 3}

@@ -25,7 +25,7 @@ public class ResultsScreen : MonoBehaviour
         frenziesUnleashedHeader,
         timesDodgedHeader;
     private AudioClip cinematicHit;
-    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Image backgroundImage, flashEffect;
     [SerializeField] private Sprite victoryBackground, gameoverBackground;
 
     private void OnValidate() {
@@ -33,14 +33,18 @@ public class ResultsScreen : MonoBehaviour
     }
 
     private void Start() {
-        backgroundImage.sprite = PlayerStats.BossesKilled == 6 ? victoryBackground : gameoverBackground; 
+        backgroundImage.sprite = PlayerStats.Victory ? victoryBackground : gameoverBackground;
+
         cinematicHit = Resources.Load<AudioClip>("Audio/cinematichit2");
         resultsScreenMusic = Resources.Load("Audio/Music/ResultsScreenMusic") as AudioClip;
         clickSound = Resources.Load<AudioClip>("Audio/click");
         hoverSound = Resources.Load<AudioClip>("Audio/hover");
-        // AudioManager.Instance.PlayMusic();
-        headerText.text = PlayerStats.BossesKilled == 6 ? "Victory" : "In Custody";
-        StartCoroutine("ShowResults");
+        headerText.text = PlayerStats.Victory ? "Victory" : "In Custody";
+
+        if (!PlayerStats.Victory) flashEffect.enabled = false;
+        
+        StartCoroutine(PlayerStats.Victory ? VictoryCoroutine() : GameOverCoroutine());
+        
     }
 
 
@@ -70,6 +74,40 @@ public class ResultsScreen : MonoBehaviour
         yield return null;
     }
 
+    private IEnumerator GameOverCoroutine() {
+        AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/GameOverSFX"), 1f);
+        yield return new WaitForSeconds(.5f);
+        animator.Play("ResultScreenShowMainFrame");
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(ShowResults());
+    }
+    
+    private IEnumerator VictoryCoroutine() {
+        float a = 0f;
+        while (flashEffect.color.r < 1f) {
+            a += .01f;
+            flashEffect.color = new Color(a, a, a, 1f);
+            yield return new WaitForSeconds(.02f);
+        }
+        
+        yield return new WaitForSeconds(1f);
+        a = 1f;
+        
+        while (flashEffect.color.a > 0f) {
+            a -= .01f;
+            if (Mathf.Approximately(a, .65f)) {
+                AudioManager.Instance.PlayMusic(Resources.Load<AudioClip>("Audio/Music/Ecstatic"));
+            }
+            flashEffect.color = new Color(1f, 1f, 1f, a);
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(3f);
+        animator.Play("ResultScreenShowMainFrame");
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(ShowResults());
+    }
+
 
     private string FormatTime(int seconds) {
         TimeSpan time = TimeSpan.FromSeconds(seconds);
@@ -80,12 +118,14 @@ public class ResultsScreen : MonoBehaviour
     public void ToHomeScreen() {
         ClickSound();
         ResetStats();
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(0);
     }
 
     public void RestartGame() {
         ClickSound();
         ResetStats();
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(3);
     }
 
@@ -115,6 +155,8 @@ public class ResultsScreen : MonoBehaviour
         PlayerStats.DodgeCooldownTime = 1f;
         PlayerStats.MaxHealth = 10;
         PlayerStats.FrenzyThreshold = 50;
+
+        PlayerStats.Victory = false;
 
     }
     

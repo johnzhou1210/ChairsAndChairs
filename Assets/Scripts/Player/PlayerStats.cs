@@ -9,11 +9,13 @@ public static class PlayerStats {
     public static int TimesDodged = 0;
     public static int FrenziesUnleashed = 0;
 
-    public static bool PiercingUpgrade = true;
-    public static float AttackCooldownTime = .33f; // original .5f
-    public static float ProjectileSpeed = 8f; // original 5f
-    public static float DodgeCooldownTime = .5f; // original 1f
-    public static int MaxHealth = 15; // original 10
-    public static int FrenzyThreshold = 25; // original 50
+    public static bool PiercingUpgrade = false;
+    public static float AttackCooldownTime = .5f; // upgraded .33f, original .5f
+    public static float ProjectileSpeed = 5f; // upgraded 8f, original 5f
+    public static float DodgeCooldownTime = 1f; // upgraded .5f, original 1f
+    public static int MaxHealth = 10; // upgraded 15, original 10
+    public static int FrenzyThreshold = 50; // upgraded 25, original 50
+
+    public static bool Victory = false;
 
 }

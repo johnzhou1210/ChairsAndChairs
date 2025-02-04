@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8908868119602657189
 Transform:
   m_ObjectHideFlags: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
   - {fileID: -3682938248344218453, guid: c6a591f930b6a1d49a2bfbcc37af4328, type: 3}
   - {fileID: 6733676154561437970, guid: c6a591f930b6a1d49a2bfbcc37af4328, type: 3}
   - {fileID: -7175726980510899486, guid: c6a591f930b6a1d49a2bfbcc37af4328, type: 3}
-  fireSpriteRenderer: {fileID: 5544592815531708032}
+  fire: {fileID: 1543428648937204366}
 --- !u!95 &1591467933794415614
 Animator:
   serializedVersion: 7

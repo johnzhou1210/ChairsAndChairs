@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using KBCore.Refs;
 using TMPro;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -15,7 +13,7 @@ using Random = UnityEngine.Random;
 public class CEOAI : MonoBehaviour, IBossAI {
     public static CEOAI Instance;
 
-    [SerializeField, Self] private BossHealth bossHealth;
+    [SerializeField, Self] private CEOHealth bossHealth;
     [SerializeField, Child] private SpriteRenderer spriteRenderer;
     [SerializeField, Self] private Animator animator;
     [SerializeField, Child] private TextMeshPro dialogText;
@@ -26,16 +24,19 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
     [SerializeField] private float angryPercentage = .4f;
     [SerializeField] private float actionDelay = 1f;
+    
 
 
     private bool canGrab = false;
 
-    [SerializeField] private GameObject introBanner, missilePrefab, barrel1, barrel2, quicktimeEvent, eyeGlow, laserSpinnerPrefab, laserSpinnerContainer, sniperSquad, dangerTile, dangerTileContainer;
+    [SerializeField] private GameObject introBanner, missilePrefab, barrel1, barrel2, quicktimeEvent, eyeGlow, laserSpinnerPrefab, laserSpinnerContainer, sniperSquad, dangerTile, dangerTileContainer, blackness;
     private Coroutine activePhase, activeMove;
     private AudioClip bossMusic;
     public int ActivePhaseInt { get; private set; } = 0; // -1 means dead
 
     private float moveSpeed = 0f;
+
+    private bool endSequencePlaying = false;
 
     private void OnValidate() { this.ValidateRefs(); }
 
@@ -68,6 +69,18 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
     private void Update() {
         if (bossHealth.CurrentHealth == 0 && ActivePhaseInt != -1) {
+            if (endSequencePlaying) return;
+            endSequencePlaying = true;
+            
+            PlayerInput.Instance.LaserLineSetActive(false);
+
+            CinemachineVirtualCameraBase cinemachineCam = CinemachineCore.GetVirtualCamera(0);
+            if (cinemachineCam != null) {
+                cinemachineCam.Follow = transform;
+            }
+            
+            Instantiate(Resources.Load<GameObject>("Prefabs/ExplosionLargeHarmless"), transform.position, Quaternion.identity);
+            AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/shing2"), 1f);
             ActivePhaseInt = -1;
             AudioManager.Instance.StopMusic();
             sniperSquad.GetComponent<SniperSquadAI>().TerminateRecon();
@@ -76,7 +89,9 @@ public class CEOAI : MonoBehaviour, IBossAI {
             SetSpeech("");
             StopActivePhasesAndMoves();
             LevelManager.Instance.BeatLevel = true;
-            enabled = false;
+            collider.enabled = false;
+            PlayerInput.Instance.enabled = false;
+            StartCoroutine(BossDeathCoro());
             return;
         }
 
@@ -90,6 +105,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
         // Grab player if player is in range
         if (PlayerInput.Instance.Frenzy) return;
         if (!canGrab) return;
+        if (endSequencePlaying) return;
         if (Vector3.Distance(PlayerInput.Instance.transform.position, transform.position) < grabRange) {
             canGrab = false;
             AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/armswing"), Random.Range(0.8f, 1.2f));
@@ -124,11 +140,11 @@ public class CEOAI : MonoBehaviour, IBossAI {
     private IEnumerator Phase1() {
         yield return new WaitForSeconds(3f);
         while (true) {
-            List<IEnumerator> moves = new List<IEnumerator> {
-                SpawnLaserSpinners(false),
-                MissileBarrage(false),
-            };
-            SetActiveMove(Util.Choice(moves));  
+            SetActiveMove(SpawnLaserSpinners(false));
+            yield return new WaitUntil(() => activeMove == null);
+            yield return new WaitForSeconds(actionDelay);
+            
+            SetActiveMove(MissileBarrage(false));
             yield return new WaitUntil(() => activeMove == null);
             yield return new WaitForSeconds(actionDelay);
         }
@@ -138,11 +154,13 @@ public class CEOAI : MonoBehaviour, IBossAI {
     private IEnumerator MissileBarrage(bool crisis) {
         List<string> lines = new List<string> {
             "Think you can win? Think again.",
+            "Brute force is the answer!",
+            "This is the power of money!!"
         };
 
         SetSpeech(Util.Choice(lines));
         
-        for (int i = 0; i < (crisis ? 16 : 5); i++) {
+        for (int i = 0; i < (crisis ? 14 : 5); i++) {
             AudioManager.Instance.PlaySFXAtPoint(transform.position, Resources.Load<AudioClip>("Audio/missilefire"),
                 Random.Range(.8f, 1.2f));
             // Raycast forward point destination
@@ -151,7 +169,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
                 .normalized;
             float centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
             float projectileSpeed = crisis ? Random.Range(18f, 20f) : Random.Range(8f, 9f);
-            GameObject missileObj = Instantiate(missilePrefab, muzzle.transform.position + new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f),0), Quaternion.identity);
+            GameObject missileObj = Instantiate(missilePrefab, muzzle.transform.position + (new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f),0) * (crisis ? 2f : 1f)), Quaternion.identity);
             EnemyMissileProjectile projectile = missileObj.GetComponent<EnemyMissileProjectile>();
             missileObj.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
             projectile.SetOwner(gameObject);
@@ -166,7 +184,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
             direction = (PlayerInput.Instance.gameObject.transform.position - muzzle.transform.position).normalized;
             centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
             projectileSpeed = crisis ? Random.Range(18f, 20f) : Random.Range(8f, 9f);
-            missileObj = Instantiate(missilePrefab, muzzle.transform.position + new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f),0), Quaternion.identity);
+            missileObj = Instantiate(missilePrefab, muzzle.transform.position + (new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f),0) * (crisis ? 2f : 1f)), Quaternion.identity);
             projectile = missileObj.GetComponent<EnemyMissileProjectile>();
             missileObj.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
             projectile.SetOwner(gameObject);
@@ -182,13 +200,17 @@ public class CEOAI : MonoBehaviour, IBossAI {
     private IEnumerator SpawnLaserSpinners(bool crisis) {
         List<string> lines = new List<string> {
             "Witness my high-tech weapons!",
+            "Let me see some beautiful blood!",
+            "Let me smell sizzling flesh!"
         };
+        
+        SetSpeech(Util.Choice(lines));
         
         List<Vector3> spawnedPoints = new List<Vector3>();
         Tilemap tilemap = GameObject.FindWithTag("SpawnArea").GetComponent<Tilemap>();
         BoundsInt bounds = tilemap.cellBounds;
 
-        for (int i = 0; i < (crisis ? 14 : 6); i++) {
+        for (int i = 0; i < (crisis ? 12 : 6); i++) {
             Vector3Int randPos = GetRandomTilePosition(tilemap, bounds, spawnedPoints);
             spawnedPoints.Add(randPos);
             TileBase tileToFlash = tilemap.GetTile(randPos);
@@ -247,11 +269,18 @@ public class CEOAI : MonoBehaviour, IBossAI {
         sniperSquad.GetComponent<SniperSquadAI>().SpawnSnipers(5);
 
         while (true) {
-            List<IEnumerator> moves = new List<IEnumerator> {
-                SpawnLaserSpinners(true),
-                MissileBarrage(true),
-            };
-            SetActiveMove(Util.Choice(moves));
+            SetActiveMove(SpawnLaserSpinners(true));
+            yield return new WaitUntil(() => activeMove == null);
+            yield return new WaitForSeconds(actionDelay);
+            
+            SetActiveMove(SpawnLaserSpinners(true));
+            yield return new WaitUntil(() => activeMove == null);
+            yield return new WaitForSeconds(actionDelay);
+            
+            SetActiveMove(MissileBarrage(true));
+            yield return new WaitUntil(() => activeMove == null);
+            yield return new WaitForSeconds(actionDelay);
+            SetActiveMove(MissileBarrage(true));
             yield return new WaitUntil(() => activeMove == null);
             yield return new WaitForSeconds(actionDelay);
         }
@@ -298,7 +327,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
     public void Awaken() {
         bossHealth.SetName("CEO");
-        BossBarRender.Instance.Show();
+        CEOBarRender.Instance.Show();
         collider.enabled = true;
         ChangePhase(1);
         Invoke(nameof(EnableCanGrab), 3f);
@@ -319,12 +348,18 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
     public void CueIntroBanner() {
         introBanner.SetActive(true);
-        Invoke(nameof(EnablePlayerControls), 5f);
+        StartCoroutine(EnablePlayerControlsWhenReady());
         AudioManager.Instance.PlayMusic(bossMusic);
     }
 
     private void StartSniperSquad() {
         sniperSquad.SetActive(true);
+    }
+
+    private IEnumerator EnablePlayerControlsWhenReady() {
+        yield return new WaitForSeconds(4f);
+        yield return new WaitUntil(() => PlayerInput.Instance != null);
+        EnablePlayerControls();
     }
 
     public void EnablePlayerControls() { PlayerInput.Instance.enabled = true; }
@@ -406,12 +441,35 @@ public class CEOAI : MonoBehaviour, IBossAI {
         spriteRenderer.flipX = true;
     }
 
-    public void FliipSpriteFalse() {
+    public void FlipSpriteFalse() {
         spriteRenderer.flipX = false;
     }
 
     public void GlowEyes() {
         eyeGlow.SetActive(true);
     }
+
+    public void StartSlowMo() {
+        Time.timeScale = .2f;
+    }
+
+    public void EndSlowMo() {
+        Time.timeScale = 1f;
+    }
+    
+    public void GlassImpact() {
+        EndSlowMo();
+        AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/glassshatter"), 1f);
+        blackness.SetActive(true);
+    }
+
+    private IEnumerator BossDeathCoro() {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(4f);
+        StartSlowMo();
+        AudioManager.Instance.PlaySFXAtPointUI(Resources.Load<AudioClip>("Audio/ceodeath"), 1f);
+        animator.Play("CEODeath");
+    }
+
     
 }

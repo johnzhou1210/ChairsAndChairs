@@ -18,7 +18,7 @@ public class KarenBrain : MonoBehaviour {
     [SerializeField, Self] private NavMeshAgent agent;
 
     [SerializeField] private List<Sprite> sprites;
-    [SerializeField] private SpriteRenderer fireSpriteRenderer;
+    [SerializeField] private GameObject fire;
 
     private bool enraged = false;
 
@@ -98,7 +98,7 @@ public class KarenBrain : MonoBehaviour {
 
     private void OnDisable() {
         CancelInvoke(nameof(StopCharge));
-        fireSpriteRenderer.enabled = false;
+        fire.SetActive(false);
     }
 
     // Charge and tackle when within range
@@ -119,7 +119,7 @@ public class KarenBrain : MonoBehaviour {
                 AudioManager.Instance.PlaySFXAtPoint(transform.position, Resources.Load<AudioClip>("Audio/karenangry"+Random.Range(1,3)), Random.Range(0.8f, 1.2f));   
             }
             
-            fireSpriteRenderer.enabled = true;
+            fire.SetActive(true);
             SetSpeech(Util.Choice(enraged ? angryLines : lines), 1.5f);
             tackleCooldownTimer = tackleCooltime;
             SetMoveSpeed(originalSpeed * (enraged ? 3.5f : 3f));
@@ -133,7 +133,7 @@ public class KarenBrain : MonoBehaviour {
     private void StopCharge() {
         SetMoveSpeed(originalSpeed);
         attackDamage = 1;
-        fireSpriteRenderer.enabled = false;
+        fire.SetActive(false);
         
     }
 

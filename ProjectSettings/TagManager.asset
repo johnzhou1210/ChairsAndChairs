@@ -13,6 +13,7 @@ TagManager:
   - Spawner
   - Window
   - SpawnArea
+  - PlayerPortrait
   layers:
   - Default
   - TransparentFX

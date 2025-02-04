@@ -16,6 +16,7 @@ public class BodyguardBrain : MonoBehaviour {
     [SerializeField, Self] private NavMeshAgent agent;
     
     [SerializeField] private List<Sprite> sprites;
+    [SerializeField] private List<Sprite> pistolSprites;
     [SerializeField] private SpriteRenderer gunSpriteRenderer, gunSpriteRendererFlipped;
     [SerializeField] private GameObject projectilePrefab;
 
@@ -80,6 +81,7 @@ public class BodyguardBrain : MonoBehaviour {
             animator.enabled = false;
             spriteRenderer.color = Color.gray;
             agent.speed = 0f;
+            agent.enabled = false;
             gunSpriteRenderer.enabled = false;
             gunSpriteRendererFlipped.enabled = false;
             enabled = false;
@@ -123,6 +125,9 @@ public class BodyguardBrain : MonoBehaviour {
         } else {
             if (shootCooldownTimer > 0f) return;
             // Shoot!!
+            gunSpriteRenderer.sprite = pistolSprites[0];
+            gunSpriteRendererFlipped.sprite = pistolSprites[0];
+            Invoke(nameof(ResetPistolSprite), .15f);
             SetMoveSpeed(0f);
             agent.stoppingDistance = Random.Range(1f, 6f);
             attackRange = Random.Range(minAttackRange, maxAttackRange);
@@ -144,8 +149,13 @@ public class BodyguardBrain : MonoBehaviour {
 
         }
     }
-    
 
+
+    private void ResetPistolSprite() {
+        gunSpriteRenderer.sprite = pistolSprites[1];
+        gunSpriteRendererFlipped.sprite = pistolSprites[1];
+    }
+    
     private void OnCollisionEnter2D(Collision2D other) {
         if (!active) return;
         if (enemyHealth.CurrentHealth == 0) return;

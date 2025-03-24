@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
         string upgradeDescription;
         switch (SceneManager.GetActiveScene().buildIndex) {
             case 3:
-                PlayerStats.AttackCooldownTime = .3f;
+                PlayerStats.AttackCooldownTime = .15f;
                 PlayerStats.ProjectileSpeed = 8f;
             break;
             case 4:

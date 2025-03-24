@@ -12118,7 +12118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterVolume: 1
-  musicVolume: 1
+  musicVolume: 0.5
   sfxVolume: 1
   musicSource: {fileID: 2066522233}
   whiteNoiseSource: {fileID: 0}

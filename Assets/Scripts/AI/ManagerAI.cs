@@ -277,7 +277,7 @@ public class ManagerAI : MonoBehaviour, IBossAI {
             if (PlayerInput.Instance.IsDodging) return;
             PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth.Debounce) return;
-            playerHealth.TakeDamage(ActivePhaseInt == 1 ? 1 : 4);
+            playerHealth.TakeDamage(ActivePhaseInt == 1 ? 1 : 2);
         }
     }
 

@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable {
     [SerializeField, Self] private Animator animator;
     public bool Debounce { get; set; }
     public int CurrentHealth { get; private set; }
-    public float DamageInvulPeriod { get; private set; } = .25f;
+    public float DamageInvulPeriod { get; private set; } = .15f;
 
     public static event Action<int, int> OnTakeDamage;
 

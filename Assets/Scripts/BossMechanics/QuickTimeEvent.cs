@@ -25,7 +25,7 @@ public class QuickTimeEvent : MonoBehaviour {
       fillValue = 0f;
       timerSlider.value = 1f;
       uiEffect.enabled = false;
-      timerDepletionSpeed = CEOAI.Instance.ActivePhaseInt == 2 ? .3f : .2f;
+      timerDepletionSpeed = CEOAI.Instance.ActivePhaseInt == 2 ? .2f : .1f;
    }
 
    private void Update() {

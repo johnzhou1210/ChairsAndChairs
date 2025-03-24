@@ -48,6 +48,7 @@ public class PlayerInput : MonoBehaviour {
     private int ammoLeft;
     private bool isReloading = false;
     private float currentShootCooldownTimer = 0f;
+    float originalSpeed;
 
 
     [Header("Other Variables")] private SpriteRenderer spriteRenderer;
@@ -159,17 +160,21 @@ public class PlayerInput : MonoBehaviour {
         FrenzyColors.Instance.enabled = true;
         frenzyCollider.enabled = true;
         transform.localScale = Vector3.one * 2f;
-        float originalSpeed = movementSpeed;
+        originalSpeed = movementSpeed;
         movementSpeed = movementSpeed * 2f;
         animator.Play("PlayerFrenzy");
         Invoke(nameof(EndFrenzy), frenzyDuration);
         WeaponStatusRender.Instance.DepleteFrenzyAnimation(frenzyDuration);
-        yield return new WaitUntil(() => Frenzy == false);
-        movementSpeed = originalSpeed;
-        animator.Play("PlayerIdle");
-        transform.localScale = Vector3.one;
-        frenzyCollider.enabled = false;
-        FrenzyColors.Instance.enabled = false;
+        
+        yield return new WaitForSeconds(frenzyDuration - 2);
+        
+        StartCoroutine(FrenzyColors.Instance.DisengageEffect());
+
+        for (float scale = 2f; scale > 1f; scale -= 0.05f) {
+            transform.localScale = Vector3.one * scale;
+            yield return new WaitForSeconds(.05f);
+        }
+        
         yield return null;
     }
 
@@ -334,6 +339,10 @@ public class PlayerInput : MonoBehaviour {
     }
 
     private void EndFrenzy() {
+        movementSpeed = originalSpeed;
+        animator.Play("PlayerIdle");
+        transform.localScale = Vector3.one;
+        frenzyCollider.enabled = false;
         Frenzy = false;
         spriteRenderer.sprite = sprites[0];
         PlayerProjectile.FrenzyValue = 0;

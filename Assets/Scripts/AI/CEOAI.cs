@@ -160,7 +160,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
 
         SetSpeech(Util.Choice(lines));
         
-        for (int i = 0; i < (crisis ? 14 : 5); i++) {
+        for (int i = 0; i < (crisis ? 10 : 4); i++) {
             AudioManager.Instance.PlaySFXAtPoint(transform.position, Resources.Load<AudioClip>("Audio/missilefire"),
                 Random.Range(.8f, 1.2f));
             // Raycast forward point destination
@@ -168,7 +168,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
             Vector3 direction = (PlayerInput.Instance.gameObject.transform.position - muzzle.transform.position)
                 .normalized;
             float centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
-            float projectileSpeed = crisis ? Random.Range(18f, 20f) : Random.Range(8f, 9f);
+            float projectileSpeed = crisis ? Random.Range(14f, 16f) : Random.Range(7f, 8f);
             GameObject missileObj = Instantiate(missilePrefab, muzzle.transform.position + (new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f),0) * (crisis ? 2f : 1f)), Quaternion.identity);
             EnemyMissileProjectile projectile = missileObj.GetComponent<EnemyMissileProjectile>();
             missileObj.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
@@ -183,14 +183,14 @@ public class CEOAI : MonoBehaviour, IBossAI {
             muzzle = barrel2;
             direction = (PlayerInput.Instance.gameObject.transform.position - muzzle.transform.position).normalized;
             centerAngle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
-            projectileSpeed = crisis ? Random.Range(18f, 20f) : Random.Range(8f, 9f);
+            projectileSpeed = crisis ? Random.Range(14f, 16f) : Random.Range(7f, 8f);
             missileObj = Instantiate(missilePrefab, muzzle.transform.position + (new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f),0) * (crisis ? 2f : 1f)), Quaternion.identity);
             projectile = missileObj.GetComponent<EnemyMissileProjectile>();
             missileObj.transform.rotation = Quaternion.Euler(0, 0, centerAngle);
             projectile.SetOwner(gameObject);
             projectile.ProjectileSpeed = projectileSpeed;
             projectile.SetBehavior(ProjectileBehavior.TARGET_GAMEOBJECT, PlayerInput.Instance.gameObject);
-            yield return new WaitForSeconds(crisis ? .125f : .67f);
+            yield return new WaitForSeconds(crisis ? .33f : 1f);
         }
 
         yield return new WaitForSeconds(crisis ? 1f : 2f);
@@ -210,16 +210,16 @@ public class CEOAI : MonoBehaviour, IBossAI {
         Tilemap tilemap = GameObject.FindWithTag("SpawnArea").GetComponent<Tilemap>();
         BoundsInt bounds = tilemap.cellBounds;
 
-        for (int i = 0; i < (crisis ? 12 : 6); i++) {
+        for (int i = 0; i < (crisis ? 8 : 4); i++) {
             Vector3Int randPos = GetRandomTilePosition(tilemap, bounds, spawnedPoints);
             spawnedPoints.Add(randPos);
             TileBase tileToFlash = tilemap.GetTile(randPos);
             StartCoroutine(FlashTile(tileToFlash, tilemap.CellToWorld(randPos)));
-            yield return new WaitForSeconds(crisis ? .1f : .25f);
+            yield return new WaitForSeconds(crisis ? .2f : .5f);
         }
         
         
-        yield return new WaitForSeconds(crisis ? 0f : 1f);
+        yield return new WaitForSeconds(crisis ? 0.5f : 1.5f);
         FinishAction();
     }
 
@@ -266,7 +266,7 @@ public class CEOAI : MonoBehaviour, IBossAI {
         yield return new WaitForSeconds(1f);
         AberrationEffectOff();
         PlayerHealth.Instance.EndCameraShake();
-        sniperSquad.GetComponent<SniperSquadAI>().SpawnSnipers(5);
+        sniperSquad.GetComponent<SniperSquadAI>().SpawnSnipers(4);
 
         while (true) {
             SetActiveMove(SpawnLaserSpinners(true));

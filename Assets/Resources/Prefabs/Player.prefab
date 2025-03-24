@@ -669,7 +669,7 @@ MonoBehaviour:
   frenzyPress: {fileID: 6024712775614013044, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   movementSpeed: 5
   dodgeDuration: 0.7
-  dodgeSpeed: 8
+  dodgeSpeed: 10
   clipSize: 16
   reloadDuration: 2.5
   fastReloadDuration: 1

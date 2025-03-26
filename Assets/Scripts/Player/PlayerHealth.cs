@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable {
     [SerializeField, Self] private Animator animator;
     private CinemachineBasicMultiChannelPerlin cinemachineNoiseChannel;
     public int CurrentHealth { get; private set; }
-    public float DamageInvulPeriod { get; private set; } = 1f;
+    public float DamageInvulPeriod { get; set; } = 1f;
 
     public static event Action<int, int> OnTakeDamage;
 

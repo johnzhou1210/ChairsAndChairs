@@ -10,7 +10,7 @@ public class SpawnerHealth : MonoBehaviour, IDamageable {
     [SerializeField, Self] private Animator animator;
     public int CurrentHealth { get; private set; }
     public bool Debounce { get; set; }
-    public float DamageInvulPeriod { get; private set; } = .25f;
+    public float DamageInvulPeriod { get; set; } = .13f;
 
     public static event Action<int, int> OnTakeDamage;
     public static event Action OnSpawnerDestroyed;

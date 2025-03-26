@@ -3,8 +3,8 @@ using UnityEngine;
 
 public interface IDamageable {
     public bool Debounce { get; set; }
-    public float DamageInvulPeriod { get; }
-    
+    public float DamageInvulPeriod { get; set; } 
+
     public abstract void TakeDamage(int damage);
 
     public abstract Tuple<int,int> GetHealthStats();

@@ -10,7 +10,7 @@ public class BossHealth : MonoBehaviour, IDamageable {
     [SerializeField, Self] private Animator animator;
     public int CurrentHealth { get; private set; }
     public int LastHealth { get; private set; }
-    public float DamageInvulPeriod { get; private set; } = .25f;
+    public float DamageInvulPeriod { get; set; } = .13f;
     public bool Debounce { get; set; }
     
     private string bossName;
